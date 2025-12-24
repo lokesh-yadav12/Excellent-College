@@ -120,7 +120,7 @@ const Header = () => {
 							{infoLinks.map((link) => (
 								<Link 
   key={link.name} 
-  href={link.path} 
+  to={link.path} 
   className={`transition-colors duration-300 text-sm font-medium ${
     isScrolled ? 'text-black hover:text-rose-700' : 'text-white hover:text-white'
   }`}
@@ -161,8 +161,8 @@ const Header = () => {
 								onMouseLeave={() => navItem.dropdown.length > 0 && setActiveDropdown(null)}
 							>
 								{navItem.dropdown.length === 0 ? (
-									<a
-										href={navItem.path}
+									<Link
+										to={navItem.path}
 										className={`font-medium transition-all duration-300 px-3 xl:px-4 py-2 rounded-lg whitespace-nowrap text-sm xl:text-base ${
 											isScrolled
 												? 'text-black hover:text-rose-700 hover:bg-gray-100'
@@ -170,7 +170,7 @@ const Header = () => {
 										}`}
 									>
 										{navItem.name}
-									</a>
+									</Link>
 								) : (
 									<>
 										<button
@@ -199,13 +199,13 @@ const Header = () => {
 													className="absolute top-full left-0 mt-2 w-56 bg-black shadow-xl rounded-lg border border-gray-200 overflow-hidden"
 												>
 													{navItem.dropdown.map((item: DropdownItem) => (
-														<a
+														<Link
 															key={item.name}
-															href={item.path}
+															to={item.path}
 															className="block px-4 py-3 text-sm font-medium text-black hover:bg-rose-50 hover:text-rose-700 transition-colors duration-200 border-b border-gray-100 last:border-b-0"
 														>
 															{item.name}
-														</a>
+														</Link>
 													))}
 												</motion.div>
 											)}
@@ -279,13 +279,13 @@ const Header = () => {
 														className="ml-4 mt-2 space-y-1"
 													>
 														{navItem.dropdown.map((item: DropdownItem) => (
-															<a
+															<Link
 																key={item.name}
-																href={item.path}
+																to={item.path}
 																className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
 															>
 																{item.name}
-															</a>
+															</Link>
 														))}
 													</motion.div>
 												)}
