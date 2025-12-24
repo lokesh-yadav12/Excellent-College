@@ -77,7 +77,7 @@ function App() {
 					<Route path="families" element={<Families />} />
 					<Route path="healthcare" element={<Healthcare />} />
 					<Route path="campuslife" element={<Campuslife />} />
-					<Route path="Athletics" element={<Athletics />} />
+					<Route path="athletics" element={<Athletics />} />
 					<Route path="admission" element={<Admission />} />
 					<Route path="events" element={<Event />} />	
 					<Route path="news" element={<News />} />
