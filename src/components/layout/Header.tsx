@@ -118,15 +118,15 @@ const Header = () => {
 
 						<div className="hidden md:flex items-center gap-10 text-xl">
 							{infoLinks.map((link) => (
-								<Link 
-  key={link.name} 
-  to={link.path} 
-  className={`transition-colors duration-300 text-sm font-medium ${
-    isScrolled ? 'text-black hover:text-rose-700' : 'text-white hover:text-white'
-  }`}
->
-  {link.name}
-</Link>
+								<a
+									key={link.name}
+									href={link.path}
+									className={`transition-colors duration-300 text-sm font-medium ${
+										isScrolled ? 'text-black hover:text-rose-700' : 'text-white hover:text-white'
+									}`}
+								>
+									{link.name}
+								</a>
 							))}
 							{/* <button
 								onClick={() => setSearchOpen(!searchOpen)}
@@ -161,16 +161,16 @@ const Header = () => {
 								onMouseLeave={() => navItem.dropdown.length > 0 && setActiveDropdown(null)}
 							>
 								{navItem.dropdown.length === 0 ? (
-									<Link
-										to={navItem.path}
+									<a
+										href={navItem.path}
 										className={`font-medium transition-all duration-300 px-3 xl:px-4 py-2 rounded-lg whitespace-nowrap text-sm xl:text-base ${
 											isScrolled
 												? 'text-black hover:text-rose-700 hover:bg-gray-100'
-												: 'text-white hover:text-white hover:bg-white'
+												: 'text-white hover:text-black hover:bg-white'
 										}`}
 									>
 										{navItem.name}
-									</Link>
+									</a>
 								) : (
 									<>
 										<button
@@ -199,13 +199,13 @@ const Header = () => {
 													className="absolute top-full left-0 mt-2 w-56 bg-black shadow-xl rounded-lg border border-gray-200 overflow-hidden"
 												>
 													{navItem.dropdown.map((item: DropdownItem) => (
-														<Link
+														<a
 															key={item.name}
-															to={item.path}
+															href={item.path}
 															className="block px-4 py-3 text-sm font-medium text-black hover:bg-rose-50 hover:text-rose-700 transition-colors duration-200 border-b border-gray-100 last:border-b-0"
 														>
 															{item.name}
-														</Link>
+														</a>
 													))}
 												</motion.div>
 											)}
@@ -243,16 +243,12 @@ const Header = () => {
 							{navigationStructure.map((navItem, index) => (
 								<div key={navItem.name}>
 									{navItem.dropdown.length === 0 ? (
-										<Link
-  to={navItem.path}
-  className={`font-medium transition-all duration-300 px-3 xl:px-4 py-2 rounded-lg whitespace-nowrap text-sm xl:text-base ${
-    isScrolled
-      ? 'text-black hover:text-rose-700 hover:bg-gray-100'
-      : 'text-white hover:text-white hover:bg-white'
-  }`}
->
-  {navItem.name}
-</Link>
+										<a
+											href={navItem.path}
+											className="block px-4 py-3 font-medium text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
+										>
+											{navItem.name}
+										</a>
 									) : (
 										<>
 											<button
@@ -279,13 +275,13 @@ const Header = () => {
 														className="ml-4 mt-2 space-y-1"
 													>
 														{navItem.dropdown.map((item: DropdownItem) => (
-															<Link
+															<a
 																key={item.name}
-																to={item.path}
+																href={item.path}
 																className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
 															>
 																{item.name}
-															</Link>
+															</a>
 														))}
 													</motion.div>
 												)}
