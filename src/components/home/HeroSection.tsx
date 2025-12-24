@@ -8,7 +8,7 @@ const HeroSection = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const timer = setTimeout(() => setShowOverlay(false), 5000);
+        const timer = setTimeout(() => setShowOverlay(false), 10000);
         return () => clearTimeout(timer);
     }, []);
 

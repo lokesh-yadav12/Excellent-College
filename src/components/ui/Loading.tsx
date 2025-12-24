@@ -23,21 +23,19 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
 
   return (
     <div
-      className={`w-full h-screen flex items-center justify-center transition-opacity duration-700 ${
+      className={`w-full min-h-screen px-4 flex items-center justify-center transition-opacity duration-700 ${
         done ? 'opacity-90' : 'opacity-100'
       }`}
-    //   style={{
-    //     background:
-    //       'linear-gradient(135deg, #fff1f2 0%, #fce7f3 35%, #e0e7ff 65%, #dbeafe 100%)',
-    //   }}
     >
       {/* ===== FULL PAGE CONTENT ===== */}
       <div className="flex flex-col items-center justify-center text-center space-y-8">
-        {/* Logo + Rings */}
+        
+        {/* ===== LOGO + RINGS ===== */}
         <div className="relative flex items-center justify-center">
+          
           {/* Soft pulse */}
           <div
-            className="absolute w-40 h-40 rounded-full"
+            className="absolute w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full"
             style={{
               background:
                 'radial-gradient(circle, rgba(105,11,34,0.18), transparent 70%)',
@@ -47,7 +45,7 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
 
           {/* Rotating ring */}
           <div
-            className="w-28 h-28 rounded-full p-[3px]"
+            className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full p-[3px]"
             style={{
               background:
                 'conic-gradient(from 0deg, transparent 0%, #690B22 50%, transparent 100%)',
@@ -59,7 +57,7 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
 
           {/* Logo */}
           <div
-            className="absolute w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-xl"
+            className="absolute w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl"
             style={{
               animation: 'floatLogo 2.8s ease-in-out infinite',
               boxShadow: '0 12px 28px rgba(105,11,34,0.3)',
@@ -73,27 +71,27 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
           </div>
         </div>
 
-        {/* Text */}
-        <div className="space-y-2">
+        {/* ===== TEXT ===== */}
+        <div className="space-y-2 px-1 text-center max-w-xs sm:max-w-md">
           <h1
-            className="text-base sm:text-xl md:text-2xl font-bold tracking-[0.2em]"
+            className="text-xs sm:text-xl md:text-2xl font-bold tracking-[0.2em] break-words"
             style={{
               color: '#690B22',
               animation: 'fadeUp 1.2s ease forwards',
             }}
           >
-            EXCELLENCE UNIVERSITY
+            EXCELLENCE <br/>UNIVERSITY
           </h1>
 
           <p
-            className="text-xs sm:text-sm text-gray-600 tracking-wide"
+            className="text-[11px] sm:text-sm text-gray-600 tracking-wide"
             style={{ animation: 'fadeUp 1.6s ease forwards' }}
           >
-            Inspiring Knowledge. Empowering Futures.
+            Inspiring Knowledge.<br/> Empowering Futures.
           </p>
         </div>
 
-        {/* Loading dots */}
+        {/* ===== LOADING DOTS ===== */}
         <div className="flex space-x-2 pt-2">
           {[0, 1, 2].map((i) => (
             <span
