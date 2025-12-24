@@ -7,8 +7,8 @@ import AcademicsSection from '@/components/home/AcademicsSection';
 import ResearchSection from '@/components/home/ResearchSection';
 import CampusLife from '@/components/home/CampusLife';
 import Upcomingevents from './Upcomingevents';
-import Healthcare from './Healthcare';
-import AthleteSection from './AthleteSection';
+// import Healthcare from './Healthcare';
+// import AthleteSection from './AthleteSection';
 //import AdmissionsSection from './AdmissionsSection';
 import InfoSection from '@/components/InfoSection';
 
@@ -125,13 +125,13 @@ const Home = () => {
 
 				
 
-				<SectionWrapper>
+				{/* <SectionWrapper>
 					<Healthcare />
 				</SectionWrapper>
 
 				<SectionWrapper>
 					<AthleteSection />
-				</SectionWrapper> 
+				</SectionWrapper>  */}
 
 				{/* <SectionWrapper>
 					<AdmissionsSection />
