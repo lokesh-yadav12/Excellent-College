@@ -118,15 +118,15 @@ const Header = () => {
 
 						<div className="hidden md:flex items-center gap-10 text-xl">
 							{infoLinks.map((link) => (
-								<a
-									key={link.name}
-									href={link.path}
-									className={`transition-colors duration-300 text-sm font-medium ${
-										isScrolled ? 'text-black hover:text-rose-700' : 'text-white hover:text-white'
-									}`}
-								>
-									{link.name}
-								</a>
+								<Link 
+  key={link.name} 
+  href={link.path} 
+  className={`transition-colors duration-300 text-sm font-medium ${
+    isScrolled ? 'text-black hover:text-rose-700' : 'text-white hover:text-white'
+  }`}
+>
+  {link.name}
+</Link>
 							))}
 							{/* <button
 								onClick={() => setSearchOpen(!searchOpen)}
@@ -243,12 +243,16 @@ const Header = () => {
 							{navigationStructure.map((navItem, index) => (
 								<div key={navItem.name}>
 									{navItem.dropdown.length === 0 ? (
-										<a
-											href={navItem.path}
-											className="block px-4 py-3 font-medium text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
-										>
-											{navItem.name}
-										</a>
+										<Link
+  to={navItem.path}
+  className={`font-medium transition-all duration-300 px-3 xl:px-4 py-2 rounded-lg whitespace-nowrap text-sm xl:text-base ${
+    isScrolled
+      ? 'text-black hover:text-rose-700 hover:bg-gray-100'
+      : 'text-white hover:text-white hover:bg-white'
+  }`}
+>
+  {navItem.name}
+</Link>
 									) : (
 										<>
 											<button
