@@ -66,26 +66,86 @@ const CampusNews = () => {
       category: "Technology",
       title: "AI transforming education",
       link: "/news/ai-education"
+    },
+    {
+      id: 9,
+      img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d",
+      category: "Environment",
+      title: "Sustainable campus initiatives launch",
+      link: "/news/sustainability"
+    },
+    {
+      id: 10,
+      img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b",
+      category: "Arts & Culture",
+      title: "New art gallery opens on campus",
+      link: "/news/art-gallery"
+    },
+    {
+      id: 11,
+      img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655",
+      category: "Student Life",
+      title: "Campus clubs reach record membership",
+      link: "/news/clubs"
+    },
+    {
+      id: 12,
+      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+      category: "Athletics",
+      title: "College team wins national championship",
+      link: "/news/championship"
+    },
+    {
+      id: 13,
+      img: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
+      category: "Business",
+      title: "Entrepreneurship program expands",
+      link: "/news/entrepreneurship"
+    },
+    {
+      id: 14,
+      img: "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca",
+      category: "Global Studies",
+      title: "International partnerships strengthen",
+      link: "/news/partnerships"
+    },
+    {
+      id: 15,
+      img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+      category: "Engineering",
+      title: "Robotics lab unveils new project",
+      link: "/news/robotics"
+    },
+    {
+      id: 16,
+      img: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0",
+      category: "Alumni",
+      title: "Distinguished alumni return for homecoming",
+      link: "/news/homecoming"
     }
   ];
 
-  // Duplicate arrays for seamless loop
-  const row1Data = [...newsData, ...newsData];
-  const row2Data = [...newsData.slice().reverse(), ...newsData.slice().reverse()];
+  // Create seamless loop by duplicating - but keep original data unique
+  const row1Original = newsData.slice(0, 8);
+  const row2Original = newsData.slice(8, 16);
+  
+  // Duplicate for seamless scrolling
+  const row1Data = [...row1Original, ...row1Original];
+  const row2Data = [...row2Original, ...row2Original];
 
   useEffect(() => {
     const interval1 = setInterval(() => {
       setScrollPosition1((prev) => {
-        const newPos = prev + 4;
-        const resetPoint = (newsData.length * 293); // card width (288) + gap (5)
+        const newPos = prev + 1;
+        const resetPoint = (row1Original.length * 293); // Reset after one set of cards
         return newPos >= resetPoint ? 0 : newPos;
       });
     }, 16);
 
     const interval2 = setInterval(() => {
       setScrollPosition2((prev) => {
-        const newPos = prev + 4;
-        const resetPoint = (newsData.length * 293);
+        const newPos = prev + 1;
+        const resetPoint = (row2Original.length * 293);
         return newPos >= resetPoint ? 0 : newPos;
       });
     }, 16);
@@ -94,10 +154,9 @@ const CampusNews = () => {
       clearInterval(interval1);
       clearInterval(interval2);
     };
-  }, [newsData.length]);
+  }, []);
 
  const handleCardClick = (link: string) => {
-
     window.open(link, '_blank');
   };
 
@@ -107,8 +166,8 @@ interface NewsItem {
   category: string;
   title: string;
   link: string;
-  description?: string; // optional
-  image?: string;      // optional (for safety)
+  description?: string;
+  image?: string;
 }
 
 
@@ -260,12 +319,10 @@ interface NewsCardProps {
           >
             {row1Data.map((item, idx) => (
               <NewsCard 
-                key={`row1-${idx}`} 
+                key={`row1-${idx}-${item.id}`} 
                 item={item} 
-              index={idx}
-
+                index={idx}
                 isHovered={hoveredCard === idx}
-
               />
             ))}
           </div>
@@ -282,12 +339,10 @@ interface NewsCardProps {
           >
             {row2Data.map((item, idx) => (
               <NewsCard 
-                key={`row2-${idx}`} 
+                key={`row2-${idx}-${item.id}`} 
                 item={item} 
-                index={idx}
-
-               isHovered={hoveredCard === idx}
-
+                index={idx + row1Data.length}
+                isHovered={hoveredCard === (idx + row1Data.length)}
               />
             ))}
           </div>
