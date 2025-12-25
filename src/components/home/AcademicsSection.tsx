@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AcademicsSection = () => {
   const [activeCard, setActiveCard] = useState<string | null>(null);
@@ -257,7 +258,7 @@ const navigate = useNavigate();
       {/* Bottom Button */}
       <div className="flex justify-center mt-12">
         <Link
-        onClick={() => navigate("/academics")}
+          to="/academics"
 
           className="relative overflow-hidden bg-[#b1040e] text-white px-14 py-4 text-lg font-semibold group shadow-lg"
           onMouseEnter={(e) => {
