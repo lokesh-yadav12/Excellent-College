@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AcademicsSection = () => {
   const [activeCard, setActiveCard] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+const navigate = useNavigate();
 
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -254,8 +256,9 @@ const AcademicsSection = () => {
 
       {/* Bottom Button */}
       <div className="flex justify-center mt-12">
-        <button
-          onClick={() => (window.location.href = "/academics")}
+        <Link
+        onClick={() => navigate("/academics")}
+
           className="relative overflow-hidden bg-[#b1040e] text-white px-14 py-4 text-lg font-semibold group shadow-lg"
           onMouseEnter={(e) => {
             const bg = e.currentTarget.querySelector(
@@ -311,7 +314,7 @@ const AcademicsSection = () => {
                 "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
             }}
           />
-        </button>
+        </Link>
       </div>
 
       <div
