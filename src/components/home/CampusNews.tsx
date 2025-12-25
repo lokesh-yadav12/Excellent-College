@@ -352,7 +352,7 @@ interface NewsCardProps {
       {/* Button */}
        <div className="flex justify-center mt-12">
   <button
-    onClick={() => navigate("/events")}
+    onClick={() => navigate("/news")}
     className="
       relative overflow-hidden
       bg-red-900 text-white

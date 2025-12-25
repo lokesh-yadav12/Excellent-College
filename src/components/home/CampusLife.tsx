@@ -123,7 +123,7 @@ const CampusLife = () => {
       {/* Button */}
       <div className="flex justify-center mt-10">
         <button
-          onClick={() => navigate("/campus-life")}
+          onClick={() => navigate("/campuslife")}
           className="relative overflow-hidden bg-[#b1040e] text-white px-14 py-4 text-lg font-semibold group"
         >
           {/* Gradient sweep */}
