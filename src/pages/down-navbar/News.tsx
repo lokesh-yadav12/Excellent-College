@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 const News = () => {
   return (
-    <div className=" text-white pt-32 px-4">
+    <div className=" text-white pt-32 sm:px-4">
 
       {/* ================= YEAR IN REVIEW ================= */}
       <section className="max-w-7xl mx-auto px-6 mb-24">
         <div className="flex items-center justify-between mb-10">
-          <h2 className="text-4xl font-serif font-bold">Year in review</h2>
-          <ChevronRight className="w-6 h-6 text-gray-400" />
+          <h2 className="text-3xl sm:text-3xl text-black font-bold">Year in review</h2>
+          {/* <ChevronRight className="w-6 h-6 text-gray-400" /> */}
         </div>
 
         <div className="grid md:grid-cols-2 gap-10">

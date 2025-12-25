@@ -73,6 +73,18 @@ const Header = () => {
 		return () => document.removeEventListener('mousedown', handleClickOutside);
 	}, []);
 
+	// Close mobile menu when route changes
+	useEffect(() => {
+		setMobileMenuOpen(false);
+		setActiveMobileDropdown(null);
+	}, [location.pathname]);
+
+	// Function to handle mobile menu link clicks
+	const handleMobileLinkClick = () => {
+		setMobileMenuOpen(false);
+		setActiveMobileDropdown(null);
+	};
+
 	return (
 		<motion.header
 			initial={{ y: -100 }}
@@ -245,6 +257,7 @@ const Header = () => {
 									{navItem.dropdown.length === 0 ? (
 										<Link
 											to={navItem.path}
+											onClick={handleMobileLinkClick}
 											className="block px-4 py-3 font-medium text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
 										>
 											{navItem.name}
@@ -278,6 +291,7 @@ const Header = () => {
 															<Link
 																key={item.name}
 																to={item.path}
+																onClick={handleMobileLinkClick}
 																className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
 															>
 																{item.name}

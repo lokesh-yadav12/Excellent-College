@@ -1,10 +1,10 @@
 import React from "react";
 const About = () => {
   return (
-    <div className="w-full bg-white text-black pt-24   sm:pt-32 sm:px-6 px-2">
+    <div className="w-full bg-white text-black pt-20   sm:pt-24 sm:px-6 px-2">
 
       {/* ===== WHO WE ARE – HERO ===== */}
-      <section className="max-w-7xl mx-auto px-6 pt-16">
+      <section className="max-w-7xl mx-auto px-4 pt-16">
         <h1 className="text-3xl font-bold text-center mb-8">Who We Are</h1>
 
         <img
@@ -15,8 +15,8 @@ const About = () => {
       </section>
 
       {/* ===== INTRO PARAGRAPH ===== */}
-      <section className="max-w-5xl mx-auto px-6 py-12">
-        <p className="text-lg leading-relaxed text-center">
+      <section className="max-w-5xl mx-auto px-4 py-10">
+        <p className="text-md leading-relaxed text-center">
           From its founding in California in the late 19th century until today,
           excellent has been infused with the American West’s spirit of openness
           and possibility. We believe strongly in the mission of higher

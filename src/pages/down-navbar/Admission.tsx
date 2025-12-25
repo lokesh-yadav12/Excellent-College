@@ -238,7 +238,7 @@ interface NewsCardProps {
   );
 
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-white py-6 sm:py-12 px-4 sm:px-10 overflow-hidden">
+    <section className="bg-gradient-to-b from-gray-50 to-white py-32 sm:py-32 px-4 sm:px-10 overflow-hidden">
       {/* Header */}
       <div className="text-center mb-12 animate-fadeIn">
         <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">Campus<span className="text-red-700"> News</span></h2>

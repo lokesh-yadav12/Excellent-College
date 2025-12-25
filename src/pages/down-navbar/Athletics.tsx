@@ -105,6 +105,7 @@ const Athletics = () => {
 	const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
 	const videoScrollRef = useRef(null);
+	const containerRef = useRef<HTMLDivElement | null>(null);
 
 	// HERO AUTO SLIDE
 	useEffect(() => {
@@ -114,24 +115,29 @@ const Athletics = () => {
 		return () => clearInterval(interval);
 	}, []);
 
-	// NEWS AUTO SLIDE
+	// NEWS AUTO SLIDE - Responsive
 	useEffect(() => {
 		const interval = setInterval(() => {
-			const maxIndex = newsData.length - 3;
-			setNewsIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+			const getMaxIndex = () => {
+				if (window.innerWidth < 640) return newsData.length - 1; // Mobile: 1 card
+				if (window.innerWidth < 1024) return newsData.length - 2; // Tablet: 2 cards
+				return newsData.length - 3; // Desktop: 3 cards
+			};
+			
+			setNewsIndex((prev) => {
+				const maxIndex = getMaxIndex();
+				return prev >= maxIndex ? 0 : prev + 1;
+			});
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
-	const containerRef = useRef<HTMLDivElement | null>(null);
-
 
 	// VIDEO AUTO SCROLL (NO USER SCROLL)
 	useEffect(() => {
 		const container = containerRef.current;
-if (!container) return;
+		if (!container) return;
 
 		let animationId: number;
-
 		const speed = 0.6;
 
 		const autoScroll = () => {
@@ -157,9 +163,9 @@ if (!container) return;
 	}, []);
 
 	return (
-		<div className="w-full pt-36 px-4">
+		<div className="w-full sm:pt-36 pt-28 px-2 sm:px-4">
 			{/* ================= HERO SLIDER ================= */}
-			<section className="relative h-[75vh] overflow-hidden">
+			<section className="relative h-[50vh] sm:h-[60vh] lg:h-[75vh] overflow-hidden rounded-lg sm:rounded-xl">
 				{heroSlides.map((slide, i) => (
 					<div
 						key={i}
@@ -169,32 +175,42 @@ if (!container) return;
 					>
 						<img src={slide.image} alt="" className="w-full h-full object-cover" />
 						<div className="absolute inset-0 bg-black/50" />
-						<div className="absolute bottom-16 left-6 max-w-4xl text-white">
-							<p className="text-sm mb-2">{slide.category}</p>
-							<h1 className="text-4xl md:text-5xl font-bold mb-4">{slide.title}</h1>
-							<p className="mb-6">{slide.desc}</p>
-							<button className="bg-red-700 px-6 py-3 font-semibold">Read Article →</button>
+						<div className="absolute bottom-4 sm:bottom-8 lg:bottom-16 left-3 sm:left-6 right-3 sm:right-6 lg:max-w-4xl text-white">
+							<p className="text-xs sm:text-sm mb-1 sm:mb-2">{slide.category}</p>
+							<h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 leading-tight">
+								{slide.title}
+							</h1>
+							<p className="text-sm sm:text-base mb-3 sm:mb-6 line-clamp-2">{slide.desc}</p>
+							<button className="bg-red-700 px-4 sm:px-6 py-2 sm:py-3 font-semibold text-sm sm:text-base hover:bg-red-800 transition-colors">
+								Read Article →
+							</button>
 						</div>
 					</div>
 				))}
 			</section>
 
 			{/* ================= LATEST NEWS ================= */}
-			<section className="py-16 bg-white">
-				<div className="max-w-7xl mx-auto px-6">
-					<h2 className="text-3xl font-bold mb-8">LATEST NEWS</h2>
+			<section className="py-8 sm:py-12 lg:py-16 bg-white">
+				<div className="max-w-7xl mx-auto px-3 sm:px-6">
+					<h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">LATEST NEWS</h2>
 
 					<div className="overflow-hidden">
 						<div
-							className="flex gap-6 transition-transform duration-700"
-							style={{ transform: `translateX(-${newsIndex * 33.3333}%)` }}
+							className="flex gap-3 sm:gap-4 lg:gap-6 transition-transform duration-700"
+							style={{ 
+								transform: `translateX(-${newsIndex * (window.innerWidth < 640 ? 100 : window.innerWidth < 1024 ? 50 : 33.3333)}%)` 
+							}}
 						>
 							{newsData.map((news, i) => (
-								<div key={i} className="min-w-[33.3333%]">
-									<img src={news.img} alt="" className="h-48 w-full object-cover rounded-lg mb-4" />
-									<p className="text-xs text-red-700 font-semibold mb-2">{news.category}</p>
-									<h3 className="font-bold text-lg mb-2">{news.title}</h3>
-									<p className="text-sm text-gray-600">{news.desc}</p>
+								<div key={i} className="min-w-full sm:min-w-[50%] lg:min-w-[33.3333%] flex-shrink-0">
+									<img 
+										src={news.img} 
+										alt="" 
+										className="h-36 sm:h-44 lg:h-48 w-full object-cover rounded-lg mb-3 sm:mb-4" 
+									/>
+									<p className="text-xs text-red-700 font-semibold mb-1 sm:mb-2">{news.category}</p>
+									<h3 className="font-bold text-base sm:text-lg mb-1 sm:mb-2 line-clamp-2">{news.title}</h3>
+									<p className="text-sm text-gray-600 line-clamp-2">{news.desc}</p>
 								</div>
 							))}
 						</div>
@@ -203,37 +219,38 @@ if (!container) return;
 			</section>
 
 			{/* ================= VIDEO HIGHLIGHTS ================= */}
-			<section className="py-16 bg-gray-100">
-				<div className="max-w-7xl mx-auto px-6">
-					<h2 className="text-3xl font-bold mb-8">VIDEO HIGHLIGHTS</h2>
+			<section className="py-8 sm:py-12 lg:py-16 bg-gray-100">
+				<div className="max-w-7xl mx-auto px-3 sm:px-6">
+					<h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">VIDEO HIGHLIGHTS</h2>
 
-					<div ref={videoScrollRef} className="flex gap-6 overflow-hidden select-none">
+					<div ref={containerRef} className="flex gap-3 sm:gap-4 lg:gap-6 overflow-hidden select-none">
 						{videoData.map((video, index) => (
 							<motion.div
 								key={index}
-								className="min-w-[300px] cursor-pointer"
-								whileHover={{ scale: 1.08 }}
+								className="min-w-[250px] sm:min-w-[280px] lg:min-w-[300px] cursor-pointer flex-shrink-0"
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
 								onClick={() => setActiveVideo(video.src)}
 							>
-								<div className="relative h-48 rounded-xl overflow-hidden">
+								<div className="relative h-40 sm:h-44 lg:h-48 rounded-lg sm:rounded-xl overflow-hidden">
 									<img
 										src={video.thumb || videoFallback}
 										alt=""
 										className="w-full h-full object-cover"
 										onError={(e) => {
-											const target = e.target as HTMLVideoElement;
+											const target = e.target as HTMLImageElement;
 											target.onerror = null;
 											target.src = videoFallback;
 										}}
 									/>
 									<div className="absolute inset-0 flex items-center justify-center bg-black/30">
-										<div className="w-14 h-14 bg-red-700 rounded-full flex items-center justify-center text-white text-xl">
+										<div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-700 rounded-full flex items-center justify-center text-white text-lg sm:text-xl hover:bg-red-800 transition-colors">
 											▶
 										</div>
 									</div>
 								</div>
-								<p className="text-xs text-red-700 font-semibold mt-4">{video.date}</p>
-								<h3 className="font-bold text-sm mt-2">{video.title}</h3>
+								<p className="text-xs text-red-700 font-semibold mt-3 sm:mt-4">{video.date}</p>
+								<h3 className="font-bold text-xs sm:text-sm mt-1 sm:mt-2 line-clamp-2">{video.title}</h3>
 							</motion.div>
 						))}
 					</div>
@@ -243,13 +260,25 @@ if (!container) return;
 				<AnimatePresence>
 					{activeVideo && (
 						<motion.div
-							className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"
+							className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
 							onClick={() => setActiveVideo(null)}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
 						>
 							<motion.div
-								className="bg-black rounded-lg overflow-hidden max-w-4xl w-full"
+								className="bg-black rounded-lg overflow-hidden max-w-4xl w-full relative"
 								onClick={(e) => e.stopPropagation()}
+								initial={{ scale: 0.9 }}
+								animate={{ scale: 1 }}
+								exit={{ scale: 0.9 }}
 							>
+								<button
+									onClick={() => setActiveVideo(null)}
+									className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white text-xl sm:text-2xl backdrop-blur-sm transition-colors"
+								>
+									×
+								</button>
 								<video src={activeVideo} controls autoPlay className="w-full" />
 							</motion.div>
 						</motion.div>

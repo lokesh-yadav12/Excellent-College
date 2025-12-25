@@ -60,9 +60,9 @@ const Healthcare = () => {
   ];
 
   return (
-    <div className="pt-32">
+    <div className="pt-28">
       {/* Hero */}
-      <section className="py-8 px-4 bg-white">
+      <section className="py-8 px-4 ">
         <motion.div
           className="max-w-7xl mx-auto"
           initial="hidden"

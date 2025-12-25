@@ -23,15 +23,15 @@ const Campuslife = () => {
 
       {/* Header */}
       <motion.section
-        className="p-10 text-center"
+        className="p-6 text-center"
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-2xl font-bold mb-4">Campus Life</h1>
-        <p className="text-2xl">
+        <h1 className="text-2xl text-black font-bold mb-4">Campus Life</h1>
+        <p className="text-md sm:text-2xl">
           Our thriving residential campus is home to a community of creative and accomplished people from around the world.
         </p>
       </motion.section>
